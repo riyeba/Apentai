@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@700;800;900&family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Custom Properties (Exact platformlead.com palette) ─── */
+:root {
+  --color-primary:       #f97316;   /* Orange button — exact platformlead */
+  --color-primary-dark:  #ea580c;
+  --color-primary-light: #fed7aa;
+  --color-bg:            #ffffff;   /* Page background — WHITE like platformlead */
+  --color-bg-alt:        #f5f4f0;   /* Warm off-white alternate sections */
+  --color-bg-section:    #f8f8f8;   /* Light section bg */
+  --color-surface:       #ffffff;   /* Card background */
+  --color-border:        #e5e7eb;   /* Light gray border */
+  --color-text:          #1a1a1a;   /* Near-black body text */
+  --color-text-muted:    #6b7280;   /* Gray muted text */
+  --color-text-light:    #9ca3af;
+  --font-heading:        'Poppins', sans-serif;
+  --font-body:           'Inter', sans-serif;
+  --nav-height:          72px;
+  --transition-base:     0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --border-radius:       0.75rem;
+  --shadow-card:         0 2px 16px rgba(0,0,0,0.08);
+  --shadow-card-hover:   0 8px 32px rgba(0,0,0,0.12);
+}
+
+/* ─── Base Reset ─── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* WHITE body background — exact like platformlead.com */
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--color-text);
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  /* Skip to content */
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    padding: 0.5rem 1rem;
+    background: var(--color-primary);
+    color: white;
+    border-radius: 0 0 0.5rem 0.5rem;
+    font-weight: 600;
+    z-index: 9999;
+    transition: top 0.2s;
+  }
+  .skip-link:focus { top: 0; }
+
+  /* Focus ring */
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #f1f1f1; }
+  ::-webkit-scrollbar-thumb { background: var(--color-primary); border-radius: 3px; }
+
+  /* Selection */
+  ::selection {
+    background: rgba(249, 115, 22, 0.2);
+    color: var(--color-text);
+  }
+
+  img { max-width: 100%; height: auto; display: block; }
+  a { text-decoration: none; color: inherit; }
+  button { cursor: pointer; border: none; background: none; font-family: var(--font-body); }
+}
+
+/* ─── Component Classes ─── */
+@layer components {
+  /* Section wrapper */
+  .section-padding { @apply py-20 md:py-28; }
+  .section-padding-sm { @apply py-14 md:py-20; }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Orange accent text */
+  .text-accent {
+    color: var(--color-primary);
+  }
+
+  /* Pill badge — exact platformlead style (orange border, white bg) */
+  .pill-badge {
+    @apply inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium;
+    border: 1.5px solid var(--color-primary);
+    color: var(--color-primary);
+    background: rgba(249, 115, 22, 0.06);
+  }
+
+  /* Orange line divider */
+  .orange-line {
+    @apply w-12 h-1 rounded-full;
+    background: var(--color-primary);
+  }
+
+  /* Card — white with subtle shadow like platformlead */
+  .surface-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-card);
+  }
+
+  .surface-card-hover {
+    @apply surface-card transition-all duration-300;
+  }
+  .surface-card-hover:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-4px);
+    border-color: rgba(249, 115, 22, 0.3);
+  }
+
+  /* Section label — small orange text label above headings */
+  .section-label {
+    @apply inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest;
+    color: var(--color-primary);
+  }
+
+  /* Light section background (alternating) */
+  .section-light {
+    background-color: var(--color-bg);
+  }
+  .section-alt {
+    background-color: var(--color-bg-alt);
+  }
+  .section-warm {
+    background-color: #f5f4f0;
+  }
+
+  /* Gradient text — orange highlight used on inner-page hero spans */
+  .gradient-text {
+    background: linear-gradient(135deg, #f97316 0%, #fb923c 50%, #ea580c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Dark surface card — for cards on dark-themed (bg-dark-*) sections */
+  .surface-card-dark {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.35);
+  }
+
+  .surface-card-dark-hover {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.35);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .surface-card-dark-hover:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(249, 115, 22, 0.35);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+  }
+}
+
+/* ─── Utility Classes ─── */
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+
+  /* Hero image overlay */
+  .hero-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.1) 100%);
+    z-index: 1;
+  }
+}
+
+/* ─── Ken Burns slow-zoom animation ─── */
+@keyframes kenburns {
+  from { transform: scale(1);    }
+  to   { transform: scale(1.08); }
+}
+.animate-kenburns {
+  animation: kenburns 8s ease-out forwards;
+}

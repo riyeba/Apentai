@@ -1,0 +1,42 @@
+{
+  "recommendations": [
+    // ── Core formatting & linting ────────────────────────────────────────
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+
+    // ── React & JSX ─────────────────────────────────────────────────────
+    "dsznajder.es7-react-js-snippets",
+    "rodrigovallades.es7-react-js-snippets",
+
+    // ── Tailwind CSS ─────────────────────────────────────────────────────
+    "bradlc.vscode-tailwindcss",
+
+    // ── Path & imports ───────────────────────────────────────────────────
+    "christian-kohler.path-intellisense",
+    "mikestead.dotenv",
+
+    // ── HTML/JSX helpers ─────────────────────────────────────────────────
+    "formulahendry.auto-rename-tag",
+    "formulahendry.auto-close-tag",
+    "steoates.autoimport",
+
+    // ── Git ──────────────────────────────────────────────────────────────
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+
+    // ── UI & productivity ────────────────────────────────────────────────
+    "pkief.material-icon-theme",
+    "zhuangtongfa.material-theme",
+    "aaron-bond.better-comments",
+    "usernamehw.errorlens",
+    "streetsidesoftware.code-spell-checker",
+    "oderwat.indent-rainbow",
+
+    // ── Vite / bundler ───────────────────────────────────────────────────
+    "antfu.vite",
+
+    // ── Color preview ────────────────────────────────────────────────────
+    "naumovs.color-highlight"
+  ],
+  "unwantedRecommendations": []
+}

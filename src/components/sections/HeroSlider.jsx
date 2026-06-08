@@ -11,10 +11,14 @@ const SLIDES = [
     headline: 'Genuine Tyres\nfor Every Vehicle',
     sub: 'Premium tyres from trusted brands — the right fit, the right price, fitted by experts.',
     cta: { label: 'View Services', href: '/services#tyres' },
-    bg: '/tyre3.jpg',
+    bg: '/okada3.jpg',
     bgColor: '#111',
+    bgImg: '/motortyre.jpg',
     bgSize: 'cover',
-    bgPosition: 'center',
+    bgPosition: 'center center',
+    lightBg: false,
+    zoomOut: false,
+    useImg: true,
   },
   {
     id: 2,
@@ -70,10 +74,11 @@ export default function HeroSlider() {
   }, [next])
 
   const slide = SLIDES[current]
+  const light = slide.lightBg
 
   return (
     <section
-      className="relative h-screen overflow-hidden bg-neutral-900"
+      className="relative h-screen overflow-hidden bg-neutral-900 animate-hero-reveal"
       aria-label="Hero banner"
     >
       {/* ── Backgrounds — crossfade with Ken Burns zoom ── */}
@@ -85,26 +90,50 @@ export default function HeroSlider() {
             s.id === slide.id ? 'opacity-100' : 'opacity-0'
           )}
         >
-          {/* Ken Burns — key tied to slide id so animation restarts on each change */}
-          <div
-            key={`kb-${s.id}-${s.id === slide.id}`}
-            className={cn('absolute inset-0', s.id === slide.id && 'animate-kenburns')}
-            style={{
-              backgroundColor: s.bgColor,
-              backgroundImage: `url(${s.bg})`,
-              backgroundSize: s.bgSize,
-              backgroundPosition: s.bgPosition,
-              backgroundRepeat: 'no-repeat',
-            }}
-          />
+          {s.useImg ? (
+            <div className="absolute inset-0 flex overflow-hidden" style={{ backgroundColor: s.bgColor }}>
+              <img
+                src={s.bg}
+                alt=""
+                className="w-1/2 h-full"
+                style={{ objectFit: 'cover', objectPosition: 'center' }}
+                draggable={false}
+              />
+              <img
+                src={s.bgImg}
+                alt=""
+                className="w-1/2"
+                style={{ objectFit: 'cover', objectPosition: 'center' }}
+                draggable={false}
+              />
+            </div>
+          ) : (
+            <div
+              key={`kb-${s.id}-${s.id === slide.id}`}
+              className={cn(
+                s.zoomOut ? 'absolute -inset-[18%]' : 'absolute inset-0',
+                s.id === slide.id && !s.lightBg && (s.zoomOut ? 'animate-kenburns-out' : 'animate-kenburns')
+              )}
+              style={{
+                backgroundColor: s.bgColor,
+                backgroundImage: `url(${s.bg})`,
+                backgroundSize: 'cover',
+                backgroundPosition: s.bgPosition,
+                backgroundRepeat: 'no-repeat',
+                backgroundBlendMode: s.lightBg ? 'multiply' : 'normal',
+              }}
+            />
+          )}
         </div>
       ))}
 
-      {/* ── Dark gradient overlay — heavier on left so text stays readable ── */}
+      {/* ── Overlay — dark gradient for photo slides, light fade for white slides ── */}
       <div
-        className="absolute inset-0 z-10"
+        className="absolute inset-0 z-10 transition-all duration-700"
         style={{
-          background: 'linear-gradient(to right, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.15) 100%)',
+          background: light
+            ? 'linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.92) 40%, rgba(255,255,255,0.2) 70%, rgba(255,255,255,0) 100%)'
+            : 'linear-gradient(to right, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.15) 100%)',
         }}
       />
 
@@ -115,14 +144,19 @@ export default function HeroSlider() {
             key={`content-${current}`}
             className="max-w-2xl animate-fade-up"
           >
-            <span className="inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/70 font-body mb-5">
-              <span className="w-6 h-px bg-primary-400 inline-block" />
+            <span
+              className={cn(
+                'inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] font-body mb-5',
+                light ? 'text-primary-500' : 'text-white/70'
+              )}
+            >
+              <span className="w-6 h-px bg-primary-500 inline-block" />
               {slide.badge}
-              <span className="w-6 h-px bg-primary-400 inline-block" />
+              <span className="w-6 h-px bg-primary-500 inline-block" />
             </span>
 
             <h1
-              className="text-white mb-5"
+              className={cn('mb-5', light ? 'text-brand-text' : 'text-white')}
               style={{
                 fontFamily: "'Barlow', sans-serif",
                 fontWeight: 700,
@@ -135,7 +169,10 @@ export default function HeroSlider() {
               {slide.headline}
             </h1>
 
-            <p className="text-white/80 leading-relaxed mb-8 font-body mx-auto" style={{ fontSize: '1.05rem', maxWidth: '36rem' }}>
+            <p
+              className={cn('leading-relaxed mb-8 font-body mx-auto', light ? 'text-brand-muted' : 'text-white/80')}
+              style={{ fontSize: '1.05rem', maxWidth: '36rem' }}
+            >
               {slide.sub}
             </p>
 

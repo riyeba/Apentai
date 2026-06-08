@@ -131,7 +131,6 @@ export default function Contact() {
 
   const onSubmit = async data => {
     await new Promise(r => setTimeout(r, 1500))
-    console.warn('Form submitted:', data)
     setSubmitted(true)
     reset()
   }

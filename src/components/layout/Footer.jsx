@@ -38,7 +38,7 @@ export default function Footer() {
             <Link to="/" className="inline-flex items-center">
               <img
                 src="/apentailogo.png"
-                alt="A"
+                alt="APENTAI Nigeria Limited"
                 className="h-10 w-auto object-contain -mr-2"
               />
               <span className="font-heading font-bold text-brand-text text-xl leading-none tracking-tight">
@@ -125,10 +125,7 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-4">
             <Link to="/contact" className="text-xs text-brand-muted hover:text-primary-500 transition-colors font-body">
-              Privacy Policy
-            </Link>
-            <Link to="/contact" className="text-xs text-brand-muted hover:text-primary-500 transition-colors font-body">
-              Terms of Service
+              Contact Us
             </Link>
           </div>
         </div>

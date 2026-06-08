@@ -12,7 +12,7 @@ const SLIDES = [
     sub: 'Premium tyres from trusted brands — the right fit, the right price, fitted by experts.',
     cta: { label: 'View Services', href: '/services#tyres' },
     bg: '/okada3.jpg',
-    bgColor: '#111',
+    bgColor: '#ffffff',
     bgImg: '/motortyre.jpg',
     bgSize: 'cover',
     bgPosition: 'center center',
@@ -78,7 +78,7 @@ export default function HeroSlider() {
 
   return (
     <section
-      className="relative h-screen overflow-hidden bg-neutral-900 animate-hero-reveal"
+      className="relative h-screen overflow-hidden bg-white animate-hero-reveal"
       aria-label="Hero banner"
     >
       {/* ── Backgrounds — crossfade with Ken Burns zoom ── */}

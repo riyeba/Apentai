@@ -52,7 +52,7 @@ export default function Navbar() {
         <Link to="/" className="flex items-center shrink-0" aria-label="APENTAI Nigeria Limited Home">
           <img
             src="/apentailogo.png"
-            alt="A"
+            alt="APENTAI Nigeria Limited"
             className="h-10 w-auto object-contain -mr-2"
           />
           <span className="font-heading font-bold text-brand-text text-xl leading-none tracking-tight">

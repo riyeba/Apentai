@@ -38,7 +38,7 @@ export const SOCIAL_LINKS = {
   instagram: 'https://instagram.com/apentai',
   twitter:   'https://twitter.com/apentai',
   linkedin:  'https://linkedin.com/company/apentai',
-  whatsapp:  'https://wa.me/2348012345678',
+  whatsapp:  'https://wa.me/2347060912057',
 }
 
 // ─── SEO Defaults ────────────────────────────────────────────────────────────

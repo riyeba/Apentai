@@ -27,15 +27,17 @@ function PageLoader() {
 function AppShell() {
   const location = useLocation()
 
-  // Scroll to section if hash is present after navigation
+  // Scroll to top on route change; scroll to section if hash present
   useEffect(() => {
     if (location.hash) {
       const el = document.querySelector(location.hash)
       if (el) {
         setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 100)
       }
+    } else {
+      window.scrollTo(0, 0)
     }
-  }, [location])
+  }, [location.pathname, location.hash])
 
   return (
     <div className="flex flex-col min-h-screen bg-white">

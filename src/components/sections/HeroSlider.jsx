@@ -73,7 +73,7 @@ export default function HeroSlider() {
 
   return (
     <section
-      className="relative h-screen overflow-hidden"
+      className="relative h-screen overflow-hidden bg-neutral-900"
       aria-label="Hero banner"
     >
       {/* ── Backgrounds — crossfade with Ken Burns zoom ── */}

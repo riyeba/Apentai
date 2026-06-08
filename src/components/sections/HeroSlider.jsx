@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import Button from '@components/ui/Button'
@@ -58,6 +58,12 @@ const SLIDES = [
 export default function HeroSlider() {
   const [current, setCurrent]     = useState(0)
   const [animating, setAnimating] = useState(false)
+  const [ready, setReady]         = useState(false)
+
+  useEffect(() => {
+    const t = setTimeout(() => setReady(true), 60)
+    return () => clearTimeout(t)
+  }, [])
 
   const goTo = useCallback(index => {
     if (animating) return
@@ -127,15 +133,17 @@ export default function HeroSlider() {
         </div>
       ))}
 
-      {/* ── Overlay — dark gradient for photo slides, light fade for white slides ── */}
-      <div
-        className="absolute inset-0 z-10 transition-all duration-700"
-        style={{
-          background: light
-            ? 'linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.92) 40%, rgba(255,255,255,0.2) 70%, rgba(255,255,255,0) 100%)'
-            : 'linear-gradient(to right, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.15) 100%)',
-        }}
-      />
+      {/* ── Overlay — only shown once ready to prevent black flash ── */}
+      {ready && (
+        <div
+          className="absolute inset-0 z-10 transition-all duration-700"
+          style={{
+            background: light
+              ? 'linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.92) 40%, rgba(255,255,255,0.2) 70%, rgba(255,255,255,0) 100%)'
+              : 'linear-gradient(to right, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.15) 100%)',
+          }}
+        />
+      )}
 
       {/* ── Text content ── */}
       <div className="relative z-20 h-full flex items-center pt-[72px]">

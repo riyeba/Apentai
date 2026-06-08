@@ -17,7 +17,7 @@ const NotFound   = lazy(() => import('@pages/NotFound'))
 // ─── Page loader wrapper ─────────────────────────────────────────────────────
 function PageLoader() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-dark-950">
+    <div className="min-h-screen flex items-center justify-center bg-white">
       <LoadingSpinner />
     </div>
   )
@@ -38,7 +38,7 @@ function AppShell() {
   }, [location])
 
   return (
-    <div className="flex flex-col min-h-screen bg-dark-950">
+    <div className="flex flex-col min-h-screen bg-white">
       {/* Accessibility: skip to main content */}
       <a href="#main-content" className="skip-link">
         Skip to main content

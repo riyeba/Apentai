@@ -4,8 +4,8 @@ import { cn } from '@utils/helpers'
 const animations = {
   'fade-up':    'translate-y-6 opacity-0',
   'fade-in':    'opacity-0',
-  'slide-left': 'translate-x-6 opacity-0',
-  'slide-right':'-translate-x-6 opacity-0',
+  'slide-left': 'opacity-0',
+  'slide-right':'opacity-0',
 }
 
 export default function AnimatedSection({

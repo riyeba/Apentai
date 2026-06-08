@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import Button from '@components/ui/Button'
@@ -84,7 +84,8 @@ export default function HeroSlider() {
 
   return (
     <section
-      className="relative h-screen overflow-hidden bg-white animate-hero-reveal"
+      className="relative overflow-hidden bg-white animate-hero-reveal"
+      style={{ height: '100svh', minHeight: '500px' }}
       aria-label="Hero banner"
     >
       {/* ── Backgrounds — crossfade with Ken Burns zoom ── */}
@@ -98,17 +99,19 @@ export default function HeroSlider() {
         >
           {s.useImg ? (
             <div className="absolute inset-0 flex overflow-hidden" style={{ backgroundColor: s.bgColor }}>
+              {/* okada3 — full width on mobile, half on desktop */}
               <img
                 src={s.bg}
                 alt=""
-                className="w-1/2 h-full"
+                className="w-full lg:w-1/2 h-full"
                 style={{ objectFit: 'cover', objectPosition: 'center' }}
                 draggable={false}
               />
+              {/* motortyre — hidden on mobile */}
               <img
                 src={s.bgImg}
                 alt=""
-                className="w-1/2"
+                className="hidden lg:block lg:w-1/2 h-full"
                 style={{ objectFit: 'cover', objectPosition: 'center' }}
                 draggable={false}
               />
@@ -147,7 +150,7 @@ export default function HeroSlider() {
 
       {/* ── Text content ── */}
       <div className="relative z-20 h-full flex items-center pt-[72px]">
-        <div className="container-custom w-full flex flex-col items-center text-center">
+        <div className="w-full px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center max-w-7xl mx-auto">
           <div
             key={`content-${current}`}
             className="max-w-2xl animate-fade-up"
